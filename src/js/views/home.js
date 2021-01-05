@@ -29,7 +29,14 @@ export const Home = () => {
 				<ol className="list-group list-group-flush">
 					{store.taskList.map((content, index) => {
 						return (
-							<li className="list-group-item listText" key={index}>
+							<li
+								className={
+									content.done ? "finished list-group-item listText" : "list-group-item listText"
+								}
+								key={index}>
+								<span className="float-right" onClick={() => actions.doneButton(index)}>
+									<i className="fas fa-check" style={{ color: "green " }} />
+								</span>
 								{content.label}{" "}
 								<span className="float-right" onClick={() => actions.removeList(index)}>
 									<i className="fas fa-times" style={{ color: "red " }} />
@@ -38,6 +45,7 @@ export const Home = () => {
 						);
 					})}
 				</ol>
+				<p>{store.taskList.length} task(s) remaining.</p>
 			</div>
 		</div>
 	);

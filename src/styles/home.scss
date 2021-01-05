@@ -44,4 +44,16 @@ p{
 .listText{
     font-weight:bold;
     color: rgb(235,216,217);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+span{
+    padding: 10px;
+}
+
+.finished{
+    background-color:rgb(207,254,212);
+    color: green;
 }

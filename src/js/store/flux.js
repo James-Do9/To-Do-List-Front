@@ -59,6 +59,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.error("Error:", error));
 			},
 
+			doneButton: ind => {
+				//add a button that changes the done: false to done: true and alters the section that is done visually
+				let store = getStore();
+				const updatedList = store.taskList.map((input, index) => {
+					if (index == ind) {
+						input.done = !input.done;
+						return input;
+					} else {
+						return input;
+					}
+				});
+				setStore({ taskList: updatedList });
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/dojam", {
+					method: "PUT", // or 'POST'
+					body: JSON.stringify(updatedList), // data can be `string` or {object}!
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(res => res.json())
+					.then(response => console.log("Success:", JSON.stringify(response)))
+					.catch(error => console.error("Error:", error));
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
